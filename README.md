@@ -92,6 +92,14 @@ không thể thực thi
 ## sau khi find ra tệp theo yêu cầu mà ta cần rồi việc còn lại chỉ là dùng cat để in pass ra thôi (cat ./maybehere07/.file2)
 ==>username:bandit6 pass:pXa26xhMWaC2SvDotA4r9EgZkulOeSBW
 
+
+
+
+
+
+
+
+
 # BANDIT LEVEL 6-7:
 Mật khẩu cho cấp độ tiếp theo được lưu trữ ở đâu đó trên... máy chủ và có tất cả các thuộc tính sau:Thuộc sở hữu của người dùng bandit7
     thuộc sở hữu của nhóm bandit6
@@ -103,4 +111,24 @@ Mật khẩu cho cấp độ tiếp theo được lưu trữ ở đâu đó trê
 ## ta lần lượt thực hiện cú pháp như sau: find / -user bandit7 -group bandit6 -size 33c 2>/dev/null   (-user dùng để tìm theo tên, -group để tìm theo nhóm ,-size để tìm theo kích cỡ bộ nhớ, 2>/dev/null để khắc phục lỗi( > dùng để điều hướng ,2> tức là đẩy luồng báo lỗi cụ thể là luồng 2 ra chỗ khác còn /dev/null coi như thùng rác nơi vứt rác luồng 2 bị lỗi vào))
 ## sau khi find được tệp cần tìm rồi thì ta chỉ cần cat <name> như ở đoạn đầu ta đã nói là có thể in ra được password  của bandit7 (cat /var/lib/dpkg/info/bandit7.password)
 ==>username:bandit7 pass:Bmnnvf82KzQlfxgAI2d1zYbr1u9pr3E3
+
+
+# BANDIT LEVEL 7-8:Mật khẩu cho cấp độ tiếp theo được lưu trong tệp data.txt. bên cạnh từ "một phần triệu(millionth)" 
+## ở bài này khi ta chưa biết đến lệnh grep thì có thể ta sẽ nghĩ đến file đầu tiên nhưng với bài này vì đã biết được thông tin  từ khóa (millionth) nên ta nên biết đến grep : lệnh dùng để tìm kiếm theo từ khóa
+### một số dạng grep cần biết: grep -? "tentukhoa" <tentep>
+### ?=i thì không phân biệt in hoa in thường
+### ?=v thì phủ định , in ra các tệp không chứ từ khóa
+### ?=n thì in ra dòng chứa từ khóa
+### ?=E thì tìm kiếm từ khóa nâng cao được nhiều từ 1 lúc, cú pháp như sau:grep -E "tk1|tk2|..." <tentep>
+### Ta cũng có thể kết hợp lại với nhau để đạt hiệu quả tìm kiếm ví dụ: -iE -in ....
+## khi tìm kiếm được ta thấy dòng :millionth       VR1ljMayciFxbnUokuQmJFw6QC9VKtub (millionth có nghĩa là 1/1 triệu) và như vậy là ta tìm được password
+==>username:bandit8 pass:VR1ljMayciFxbnUokuQmJFw6QC9VKtub
+
+
+
+
+
+
+
+
 
