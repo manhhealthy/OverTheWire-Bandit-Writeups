@@ -30,3 +30,30 @@ Mật khẩu cho cấp độ tiếp theo được lưu trữ trong một tệp c
 ### trước hết ta dùng ls để kiểm tra xem có những file vào trong server
 ### sau khi đã thấy file trong server ( cụ thể ở bài này là file readme) ,ta dùng "cat readme" để đọc và in file ra và nhìn thấy được mật khẩu mà server cung cấp cho tài khoản bandit1
 ====> user: bandit1 pass:6y2kwnwK6grgvwvpvLaa2T1cpFEKOhNR 
+
+
+
+
+
+# BANDIT LEVEL 1-2 :Mật khẩu cho cấp độ tiếp theo được lưu trong một tệp có tên là - nằm trong thư mục chính 
+## có thể thấy mục đích chính của bài này là đọc được file "-" vì trong đó có chứa mật khẩu của bandit 2
+## dựa vào kiến thức từ trước , ta có thể dùng lệnh cat để đọc file tên là "-" nhưng vì "-" là một kí tự đặc biệt khác với tên thông thường nên khi chúng ta sử dụng cần sử dụng đúng cách, cụ thể là cat ./-
+## sau khi thực thi lệnh xong thì sẽ hiện thị mật khẩu cho chúng ta
+===> user:bandit2 pass:PK8fYLZg2hnHSz83plBL1iEPKdD3QToB
+
+
+
+
+
+
+# BANDIT LEVEL 2-3:Mật khẩu cho cấp độ tiếp theo được lưu trữ trong một tệp có tên là... --spaces in this filename--nằm trong thư mục chính 
+## cũng tương tự như các bài trước thì ở bài tập này cũng chỉ là yêu cầu truy cập vào file có tên"--spaces in this filename--" nằm trong thư mục chính là đã có thể nhìn thấy mật khẩu của bandit3
+## Tuy nhiên ở bài này thì chúng ta sẽ cần phải cân nhắc bởi vì filename này có chứa dấu cách, vì vậy khi nhập tên file cần thêm " ở hai đầu để server có thể đọc đúng tên file
+## Cụ thể với bandit trên thì ta nhập như sau: cat ./"--spaces in this filename--"
+==> username :bandit3 pass:7ZZ2LFrykP2zEyvBl4m3clcL7tGYJPME
+
+
+
+
+
+
