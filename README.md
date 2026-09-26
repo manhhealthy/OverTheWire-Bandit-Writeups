@@ -165,5 +165,15 @@ Mật khẩu cho cấp độ tiếp theo được lưu trữ ở đâu đó trê
 
 
 
+ # BANDIT LEVEL 11-12:Mật khẩu cho cấp độ tiếp theo được lưu trong tệp data.txt . trong đó tất cả các chữ cái viết thường (az) và viết hoa (AZ) đã được xoay 13 vị trí 
+## ở bài này khá khó hiểu được chi tiết cụ thể nếu chưa tiếp xúc với lập trình bao giờ, như đề bài ta hiểu là với mỗi chứ trong văn bản ban đầu xoay 13 vị trị thì sẽ ra được dãy là password. lấy ví dụ đơn giản là a->n,b-o,A->n,B-O,Z-M,z-m
+## tiếp theo có một lệnh mới ta cần phải hiểu để solve bài này đó là lệnh tr(translate),cách sử dụng cũng khá đơn giản thôi: tr "daybandau" "daysaukhithaydoi"
+## ứng dụng vào bài cụ thể ta kết hợp cùng cat nữa ( để in ra màn hình password sau khi đã xoay 13 vị trí ): cat data.txt | tr "a-zA-Z" "n-za-mN-ZA-M"
+## ở đoạn tr rất khó hiểu , ban đầu tôi đã phải thử nhiều lần theo suy nghĩ nhưng bây giờ tôi đã hiểu cách vận hành của nó,bạn có thể hiểu đơn giản rằng : "a-zA-Z" có nghĩa là cho 2 dãy ban đầu là a->z và A-Z
+### với dãy a-z thì ta biến đổi thành một dãy mới là dãy n-z nối với dãy a-m (n-za-m)
+### tương tự với dãy A-Z thì ta biến đổi thành một dãy mới là dãy N-Z nối với dãy A-M(N-ZA-M)
+## sau khi thực thi lệnh thì ta có thể thấy trên màn hình:The password is GROozWPO8QyN0mGrjUkID0WCYkZiQxrN . và đây cũng chính là pass của level này
+==>username:bandit12 ,pass:GROozWPO8QyN0mGrjUkID0WCYkZiQxrN 
+
 
 
