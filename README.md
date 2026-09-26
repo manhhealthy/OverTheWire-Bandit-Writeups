@@ -156,5 +156,14 @@ Mật khẩu cho cấp độ tiếp theo được lưu trữ ở đâu đó trê
 
 
 
+# BANDIT LEVEL 10-11:Mật khẩu cho cấp độ tiếp theo được lưu trong tệp data.txt . chứa dữ liệu được mã hóa base64 
+## ở bài này thì cũng khá đơn giản nếu biết được lệnh base64 
+### về cú pháp sử dụng của base64 chỉ cần đơn giản là base64 -d <tentep>: tức là giải mã  các kí tự ở dạng base64 về dạng văn bản thông thường
+## đi vào thực hành ta thực hiện lệnh như sau: base64 -d data.txt nó sẽ in ra dòng:The password is pYfOY6HwUsDj5rL9UvyhU7MCmv8vN5Ro
+==>username:bandit11, pass:pYfOY6HwUsDj5rL9UvyhU7MCmv8vN5Ro
+
+
+
+
 
 
