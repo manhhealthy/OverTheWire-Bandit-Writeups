@@ -144,6 +144,17 @@ Mật khẩu cho cấp độ tiếp theo được lưu trữ ở đâu đó trê
 
 
 
+# BANDIT LEVEL 9-10 :Mật khẩu cho cấp độ tiếp theo được lưu trong tệp data.txt. trong một trong số ít chuỗi ký tự mà con người có thể đọc được, đứng sau một vài dấu '='. các nhân vật. 
+## ở level này lúc đầu bắt đầu bài toán tôi đã nghĩ rằng có thể dùng grep để tìm kí tự "=" là có thể giải quyết bài toán nhưng không được và bị báo lỗi" binary file matches" có thể hiểu đơn giản là grep không thể đọc toàn bộ thông tin trong tệp chứa nhiều kí tự nhị phân này cho nên ta cần hướng đến một lệnh mới đó là strings
+## cách sử dụng của lệnh này cũng khá đơn giản  : strings <tentep> : lọc ra các chuỗi kí tự mà con người có thể đọc và hiểu được ví dụ : [==p+ , =zW} 
+## nhưng để có thể tìm ra được mật khẩu ta cần sử dụng kết hợp cùng lệnh grep nữa bởi đề bài cho ta thông tin rằng có một số kí tự "=" đứng trước pass, ta liền nghĩ ngay đến lệnh grep "="
+## đi vào thực chiến ta nhập như sau: strings data.txt | grep "=" 
+## sau khi thực hiện lệnh xong ta dễ dòng có thể nhìn thấy dòng :========== B0s2khmbT9u0geKuOoVGW3JZKhndE3BG hoàn toàn khớp với từng yêu cầu mà đề bài đưa ra
+==>username :bandit10 ,pass :B0s2khmbT9u0geKuOoVGW3JZKhndE3BG
+
+
+
+
 
 
 
