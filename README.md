@@ -114,7 +114,7 @@ Mật khẩu cho cấp độ tiếp theo được lưu trữ ở đâu đó trê
 
 
 # BANDIT LEVEL 7-8:Mật khẩu cho cấp độ tiếp theo được lưu trong tệp data.txt. bên cạnh từ "một phần triệu(millionth)" 
-## ở bài này khi ta chưa biết đến lệnh grep thì có thể ta sẽ nghĩ đến file đầu tiên nhưng với bài này vì đã biết được thông tin  từ khóa (millionth) nên ta nên biết đến grep : lệnh dùng để tìm kiếm theo từ khóa
+## ở bài này khi ta chưa biết đến lệnh grep thì có thể ta sẽ nghĩ đến find đầu tiên nhưng với bài này vì đã biết được thông tin  từ khóa (millionth) nên ta nên biết đến grep : lệnh dùng để tìm kiếm theo từ khóa
 ### một số dạng grep cần biết: grep -? "tentukhoa" <tentep>
 ### ?=i thì không phân biệt in hoa in thường
 ### ?=v thì phủ định , in ra các tệp không chứ từ khóa
@@ -124,6 +124,21 @@ Mật khẩu cho cấp độ tiếp theo được lưu trữ ở đâu đó trê
 ## khi tìm kiếm được ta thấy dòng :millionth       VR1ljMayciFxbnUokuQmJFw6QC9VKtub (millionth có nghĩa là 1/1 triệu) và như vậy là ta tìm được password
 ==>username:bandit8 pass:VR1ljMayciFxbnUokuQmJFw6QC9VKtub
 
+
+
+
+
+
+
+# BANDIT LEVEL 8-9:Mật khẩu cho cấp độ tiếp theo được lưu trong tệp data.txt. và là dòng văn bản duy nhất chỉ xuất hiện một lần. 
+## đến với bài này ta cần phải tiếp xúc với lệnh mới lại đó là sort và uniq
+### để thực sự biết cách giải level này trước tiên ta cần biết cách hoạt động và cú pháp của chúng:
+#### cú pháp sort : sort -? <tentep> , và ở bài này ta chưa cần dùng đến -? mà chỉ cần đơn giản là sort <tentep>: lệnh này dùng để sắp xếp các thông tin trong tệp mặc định là theo thứ tự alphabet, khác với cat là chỉ đọc tệp theo thứ tự random
+#### cú pháp uniq: uniq -? (ở bài này ta sử dụng uniq -u ví uniq -u có chắc năng lọc các dòng trùng nhau và chỉ giữ lại các dòng không bị trùng lặp) . Và một lưu ý nhở với lệnh uniq này là chúng không đi một mình mà cần đi kèm sau lệnh sort bởi lệnh này cần được sắp xếp trước thì mới lọc được một cách chính xác
+#### ở uniq này ta có thể biết thêm vì uniq -d: lọc ra những dòng bị trùng lặp(đối ngược với uniq -u), uniq -c: đếm số lần xuất hiện của từng dòng
+#### cú pháp để uniq đi kèm với sort : sort -? <tentep> | uniq -? 
+### sau khi đã tìm ra được dòng duy nhất chỉ xuất hiện 1 lần( đúng theo yêu cầu của đề bài) thì đó cũng chính là password
+==>username:bandit9 pass:EjmOSvuAu7sGAHqHVcBDPirRe9T03kxl
 
 
 
