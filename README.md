@@ -177,3 +177,22 @@ Mật khẩu cho cấp độ tiếp theo được lưu trữ ở đâu đó trê
 
 
 
+
+
+# BANDIT LEVEL 12-13:Mật khẩu cho cấp độ tiếp theo được lưu trong tệp data.txt . Đây là bản hiển thị dạng hex của một tập tin đã được nén nhiều lần. Ở cấp độ này, việc tạo một thư mục con dưới /tmp có thể hữu ích. Bạn có thể làm việc với nó. Sử dụng lệnh `mkdir` với tên thư mục khó đoán. Hoặc tốt hơn hết, hãy sử dụng lệnh “mktemp -d”. Sau đó sao chép tập tin dữ liệu bằng lệnh cp và đổi tên nó bằng lệnh mv (đọc hướng dẫn). (trang hướng dẫn sử dụng!) 
+## haizz quả thực đây là một nhiệm vụ khó , tôi đã phải dành ra 1h để hiểu được 80% cách giải quyết bài này một cách bản chất nhất
+## đầu tiên khi chưa biết đến hex mà đọc đề thì thấy nó được lưu trong tệp data.txt tôi liền cat data.txt và tưởng ngon ăn nhưng không hiển thị trước tôi là một loại đống mã nhị phân, nó là cả một hành trình dài ở phía trước
+## sau khi đọc và biết cách sử dụng xxd thì tôi lại một lần nữa thử xxd nhưng nó báo lỗi permission denied(bị từ chối quyền) . sau khi tìm hiểu lý do thì tôi mới hiểu rằng cần phải tạo một file mới có thể truy cập được cấp quyền và ở bài này tôi sử dụng mktemp -d : lệnh này dùng để tạo một thư mục tạm thời với tên bất kì để tăng tính bảo mật
+## sau khi đã tạo được tệp mới xong( cụ thể với lần tạo của tôi là /tmp/tmp.rHe6WNijCW) thì ta nhảy vào tệp này bằng cách cd ( cụ thể là cd /tmp/tmp.rHe6WNijCW)
+## sau khi đã nhảy vào tệp này rồi ta coppy toàn bộ tệp này về home bằng cách cp ~/data.txt . tức là copy dữ liệu từ data.txt sang .(. ở đây tức là thư mục hiện tại để lát nữa có thể truy cập)
+## sau khi đã coppy thì lúc này ta hoàn toàn có thể dịch mã nhị phân thành mã thường sang một file mới cụ thể cách làm như sau : xxd -r data.txt > data_raw ( điều này có nghĩa là tạo ra file data_raw chứa nội dung dịch từ mã nhị phân sang mã thường)
+##  ta tiếp tục kiểm tra xem định dạng file của file data_raw như nào , ta thực hiện file data_raw, lúc này ta thấy một thông báo rằng:data_raw: gzip compressed data, was "data2.bin", last modified: Sat Sep 26 21:52:56 2026, max compression, from Unix, original size modulo 2^32 582. nó có nghĩa là file này cần được giải nén thông qua công cụ gzip . Để thực hiện điều này, trước mắt ta cần biết lệnh mv: lệnh dùng để rename ( muốn dùng công cụ gzip để giải nén file trước hết file đó cần được giải nén dưới dạng <tentep>.gz  vì vậy ta dùng lệnh mv để rename)
+## có một lưu ý nhỏ ở đâu là ta thường để tên <tentep>.gz với tên tệp giống "data2.bin" để tránh nhầm lẫn giữa tên cũ và tên mới
+## ta bắt đầu thực hiện: mv data_raw data2.gz
+## sau đó t giải nén file bằng cách grip -d data2.gz ( grip -d có nghĩa là giải nén, câu lệnh này đang giải nén tệp data2.gz). sau khi giải nén xong ta tiếp tục kiểm tra định dạng xem đã có thể xem dưới dạng ascii chưa (file data2)
+## lúc này lại hiện thêm thông báo:data2: bzip2 compressed data, block size = 900k . câu thông báo này có ý nghĩa là file lại cần được giải nén bằng công cụ bzip2 . ta vẫn tiếp tục làm tương tự như gzip
+## mv data2 data2.bz2 -> bzip2 -d data2.bz2 -> file data2-> tiếp tục thấy dạng gzip ta làm tương tự như các lần trên ,đến một lúc ta lại thấy một thông báo mới:data4: POSIX tar archive (GNU). với thông báo này ta cần dùng tar -xf <tentep> để xả gói file. ta thực hiện như sau:tar -xf data4 . sau đó ta dùng ls -l để coi danh sách chi tiết xem có file nào được sinh ra không, ở bash mà tôi đang làm thấy xuất hiện file mới là data5.bin lúc này ta lại xem định dạng của data5.bin như nào(file data5.bin) thì này thấy cần xả gói tar ta lại cứ tiếp tục như vậy khi gặp thông báo tar thì mình dùng tar -xf khi nào gặp thông báo gzip thì mình dùng gzip, bzip2 thì dùng bzip cứ thế đến data9.
+## lúc này khi file data9 thì ta đã thấy xuất hiện ascii text ( thứ mà ta sẽ đọc được)
+## phần còn lại chỉ là việc cat ra và thấy được password
+## bandit12@bandit:/tmp/tmp.rHe6WNijCW$ cat data9 The password is qQYQiHOBPR8zR61qxYqX45quvihF2uzk
+==>username: bandit13 ,pass:qQYQiHOBPR8zR61qxYqX45quvihF2uzk
