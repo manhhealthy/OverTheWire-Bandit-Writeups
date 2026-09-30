@@ -196,3 +196,28 @@ Mật khẩu cho cấp độ tiếp theo được lưu trữ ở đâu đó trê
 ## phần còn lại chỉ là việc cat ra và thấy được password
 ## bandit12@bandit:/tmp/tmp.rHe6WNijCW$ cat data9 The password is qQYQiHOBPR8zR61qxYqX45quvihF2uzk
 ==>username: bandit13 ,pass:qQYQiHOBPR8zR61qxYqX45quvihF2uzk
+
+
+
+
+
+
+
+# BANDIT LEVEL 13-14:Mật khẩu cho cấp độ tiếp theo được lưu trữ trong /etc/bandit_pass/bandit14 và chỉ có thể được đọc bởi người dùng bandit14 . Ở cấp độ này, bạn không nhận được mật khẩu tiếp theo, nhưng bạn... Nhận khóa SSH riêng tư có thể được sử dụng để đăng nhập vào cấp độ tiếp theo. Hãy xem lại các lệnh đã giúp bạn đăng nhập vào các cấp độ cướp trước đó. và tìm hiểu cách sử dụng chìa khóa cho cấp độ này.
+## bước vào bài này trước hết ta cần biết được địa chỉ chính xác của sshkey.private là nằm ở đâu?
+##  ta kết nối với máy chủ bandit13 thông qua pass của level trước: ssh -p 2220 bandit13@bandit.labs.overthewire.org rồi nhập mật khẩu để kết nối
+## sau khi kết nối ta dùng lệnh pwd: dùng để biết xem mình đang ở đâu , thư mục nào, thì ta thấy được /home/bandit13 và sau đó ta thử dùng lệnh ls để liệt kê các file nằm trong home/bandit13 thì thấy có sshkey.private => như vậy ta xác định được sshkey.private có đường dẫn cụ thể là : home/bandit13/sshkey.private
+## và ở bước này ta cần dùng exit để out server bandit13 bởi key không cấp quyền cho bandit13
+## sau khi biết được địa chỉ chính xác rồi ta dùng : scp -P 2220 bandit13@bandit.labs.overthewire.org:/home/bandit13/sshkey.private ./bandit14.key  
+## ta đi vào phân tích từng lệnh cụ thể như sau
+### scp : dùng để sao chép dữ liệu giữa các server với nhau
+### khác với ssh thì scp thì dùng -P( viết hoa) 2220 cái này ý nghĩa cũng giống như ssh tức là cổng 2220
+### bandit13@bandit.labs.overthewire.org:/home/bandit13/sshkey.private : lệnh này có ý nghĩa là dữ liệu của sshkeyprivate ở địa chỉ cụ thể nhất để có thể copy dữ liệu một cách chính xác nhất
+### ./bandit14.key : ở đây . ý muốn nói là thư mục hiện tại và /bandit14.key tức là đặt tên cho file key này là bandit14.key
+### HIỂU ĐƠN GIẢN TOÀN BỘ DÒNG LỆNH TRÊN LÀ: HÃY SAO CHÉP sshkey.private trong server bandit13 thông qua cổng 2220 , SAO CHÉP VÀO THƯ MỤC HIỆN TẠI và đặt tên file đó là bandit14.key
+## tiếp theo để tăng tính bảo mật và giới hạn quyền truy cập ta cần thực hiện thêm lệnh : chmod 600 bandit14.key (chmod(change mode): thay đổi chế độ, 6 0 0 có ý nghĩa lần lượt là 6(tôi có thể đọc và truy cập tệp này) , 0( không có group nào có thể truy cập file này),0( không có cá nhân nào khác có quyền truy cập tệp này)
+## sau khi đã đảm bảm chỉ mình mới có thể truy cập vào tệp này rồi thì  bước còn lại là : ssh -i bandit14.key bandit14@bandit.labs.overthewire.org -p 2220
+### ở câu lệnh này chỉ khác ssh thông thường ở chỗ thay vì đăng nhập bằng cách nhập mật khẩu thông thường thì ta đăng nhập vào server bằng key cụ thể là -i bandit14.key
+### hiểu cả câu: truy cập vào server bandit14@bandit.labs.overthewire qua port 2220 và đăng nhập bằng bandit14.key thay vì dùng cách nhập mật khẩu
+## vì theo đề bài : mật khẩu ở trong /etc/bandit_pass/bandit14 nên lúc này ta chỉ cần : cat /etc/bandit_pass/bandit14 là có thể lấy được key
+==>username:bandit14, pass:aaWecNkG4FhxJQxz07uiwzVP6bJiYS65
