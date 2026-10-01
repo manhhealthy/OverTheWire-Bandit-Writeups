@@ -221,3 +221,13 @@ Mật khẩu cho cấp độ tiếp theo được lưu trữ ở đâu đó trê
 ### hiểu cả câu: truy cập vào server bandit14@bandit.labs.overthewire qua port 2220 và đăng nhập bằng bandit14.key thay vì dùng cách nhập mật khẩu
 ## vì theo đề bài : mật khẩu ở trong /etc/bandit_pass/bandit14 nên lúc này ta chỉ cần : cat /etc/bandit_pass/bandit14 là có thể lấy được key
 ==>username:bandit14, pass:aaWecNkG4FhxJQxz07uiwzVP6bJiYS65
+
+
+
+# BANDIT LEVEL 14-15:Bạn có thể lấy lại mật khẩu cho cấp độ tiếp theo bằng cách gửi Mật khẩu của cấp độ hiện tại cho cổng 30000 trên localhost .
+## ở bài này cũng khá đơn giản vì ta chỉ cần hiểu một lệnh đó là nc:là công cụ kết nối mạng để truyền và nhận dữ liệu
+## cụ thể ở bài này vì mình muốn tìm pass của bandit15 thì ta dùng lệnh : nc localhost 30000
+### ý nghĩa của cả câu như sau(tạo kết nối với localhost 30000 để nhận dữ liệu đồng thời truyền dữ liệu(nhập pass của bandit14))
+## khi thực thi lệnh này cũng cần yêu cầu nhập pass của bandit14 khi đó mới có thể nhận được pass của level tiếp theo
+## sau khi nhập xong thì kết quả pass của bandit15 hiển ra màn hình
+=> username:bandit15 , pass:pbLYuZtTg4MgaqfJx8jbA9gKKGqM68A7 
